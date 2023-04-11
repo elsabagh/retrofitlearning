@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.retrofitlearning.MainViewModel" />
@@ -12,6 +13,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="@+id/text_delivery"
+        app:layout_constraintTop_toBottomOf="@+id/text_delivery"
         tools:context=".MainActivity">
 
 
@@ -19,22 +22,66 @@
             android:id="@+id/text_setup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.joke.setup}"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="248dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="13dp"
+            android:text="@{viewModel.joke.toData().setup}"
+            app:layout_constraintBottom_toTopOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.349"
+            app:showWhenSuccess="@{viewModel.joke}" />
+
+        <TextView
+            android:id="@+id/text_delivery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="79dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{viewModel.joke.toData().delivery}"
+            app:layout_constraintEnd_toEndOf="@+id/text_setup"
+            app:layout_constraintStart_toStartOf="@+id/text_setup"
+            app:layout_constraintTop_toBottomOf="@+id/text_setup"
+            app:showWhenSuccess="@{viewModel.joke}" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="57dp"
+            android:layout_height="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.349" />
+            app:showWhenError="@{viewModel.joke}"
+            app:srcCompat="@drawable/baseline_error_outline_24" />
 
-        <TextView
-            android:id="@+id/text_delivery"
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="49dp"
+            android:layout_height="44dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenLoading="@{viewModel.joke}" />
+
+        <Button
+            android:id="@+id/button_fetch_jock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="79dp"
-            android:text="@{viewModel.joke.delivery}"
-            app:layout_constraintEnd_toEndOf="@+id/text_setup"
-            app:layout_constraintStart_toStartOf="@+id/text_setup"
-            app:layout_constraintTop_toBottomOf="@+id/text_setup" />
+            android:onClick="@{() -> viewModel.getRandomJoke()}"
+            android:text="Button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_delivery"
+            app:layout_constraintVertical_bias="0.783" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
