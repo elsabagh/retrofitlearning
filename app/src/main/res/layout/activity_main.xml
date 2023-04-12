@@ -20,8 +20,10 @@
 
         <TextView
             android:id="@+id/text_setup"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:gravity="center"
             android:layout_marginStart="16dp"
             android:layout_marginTop="248dp"
             android:layout_marginEnd="16dp"
@@ -36,11 +38,13 @@
 
         <TextView
             android:id="@+id/text_delivery"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="79dp"
             android:layout_marginEnd="16dp"
+            android:textSize="18sp"
+            android:gravity="center"
             android:text="@{viewModel.joke.toData().delivery}"
             app:layout_constraintEnd_toEndOf="@+id/text_setup"
             app:layout_constraintStart_toStartOf="@+id/text_setup"
